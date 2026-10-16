@@ -1,0 +1,7 @@
+2026-09-20 10:14:21 INFO payment_service - Payment request received: order_id=ORD-1001
+2026-09-20 10:14:21 INFO payment_service - Payment validation successful: order_id=ORD-1001
+2026-09-20 10:14:22 INFO payment_service - Creating payment record: order_id=ORD-1001
+2026-09-20 10:14:22 ERROR payment_service - Database insertion failed: transaction_id=NULL
+2026-09-20 10:14:22 ERROR payment_controller - POST /payment returned HTTP 500
+2026-09-20 10:15:03 INFO payment_service - Payment request received: order_id=ORD-1002
+2026-09-20 10:15:03 INFO payment_service - Payment completed successfully: order_id=ORD-1002

@@ -1,0 +1,34 @@
+[
+  {
+    "incident": "POST /payment is returning HTTP 500",
+    "expected_diagnosis": "Database insertion failed because transaction_id was NULL.",
+    "expected_root_cause": "The payment service inserts the payment record before generating the transaction ID.",
+    "expected_actions": [
+      "Generate transaction_id before inserting the payment record.",
+      "Verify the payment record is persisted successfully."
+    ]
+  },
+  {
+    "incident": "Payment API requests are timing out",
+    "expected_diagnosis": "Database connection pool exhaustion is causing payment requests to time out.",
+    "expected_root_cause": "The database connection pool is exhausted.",
+    "expected_actions": [
+      "Increase connection pool capacity.",
+      "Investigate long-running database queries."
+    ]
+  },
+  {
+    "incident": "POST /payment returns HTTP 400 because currency is missing",
+    "expected_diagnosis": "Payment request validation failed because currency is required.",
+    "expected_root_cause": "The request is missing the required currency field.",
+    "expected_actions": [
+      "Validate required payment fields before calling the payment service."
+    ]
+  },
+  {
+    "incident": "POST /unknown returns HTTP 500 with no matching logs or documentation",
+    "expected_diagnosis": "Insufficient evidence to determine the root cause.",
+    "expected_root_cause": "Insufficient evidence.",
+    "expected_actions": []
+  }
+]

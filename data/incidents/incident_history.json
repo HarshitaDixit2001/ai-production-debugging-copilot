@@ -1,0 +1,38 @@
+[
+  {
+    "incident_id": "INC-001",
+    "title": "Payment API HTTP 500",
+    "description": "Payment requests failed with HTTP 500 when transaction_id was missing.",
+    "root_cause": "Database insertion failed because transaction_id was NULL.",
+    "service": "payment_service",
+    "resolution": "Generate transaction_id before creating the payment record.",
+    "evidence": [
+      "DatabaseError: Cannot insert NULL into column transaction_id",
+      "PaymentService.create_payment failed"
+    ]
+  },
+  {
+    "incident_id": "INC-002",
+    "title": "Payment API Timeout",
+    "description": "Payment requests experienced database timeout errors.",
+    "root_cause": "Database connection pool was exhausted.",
+    "service": "payment_service",
+    "resolution": "Increase connection pool capacity and investigate long-running queries.",
+    "evidence": [
+      "Database connection pool exhausted",
+      "Query timeout exceeded"
+    ]
+  },
+  {
+    "incident_id": "INC-003",
+    "title": "Payment API HTTP 400",
+    "description": "Payment requests were rejected because currency was missing.",
+    "root_cause": "Request validation failed because currency is required.",
+    "service": "payment_controller",
+    "resolution": "Validate required payment fields before calling the payment service.",
+    "evidence": [
+      "Missing required field: currency",
+      "Payment request validation failed"
+    ]
+  }
+]

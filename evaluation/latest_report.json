@@ -1,0 +1,56 @@
+{
+  "total_cases": 4,
+  "correct": 4,
+  "accuracy": 1.0,
+  "diagnoses_provided": 3,
+  "coverage": 0.75,
+  "insufficient_evidence_cases": 1,
+  "insufficient_evidence_correct": 1,
+  "insufficient_evidence_accuracy": 1.0,
+  "cases_with_valid_confidence": 4,
+  "average_confidence": 0.65,
+  "failed_cases": 0,
+  "error_cases": 0,
+  "results": [
+    {
+      "incident": "POST /payment is returning HTTP 500",
+      "expected_diagnosis": "Database insertion failed because transaction_id was NULL.",
+      "actual_diagnosis": "Database insertion failed because transaction_id was NULL.",
+      "passed": true,
+      "confidence": 0.9,
+      "expected_insufficient_evidence": false,
+      "actual_insufficient_evidence": false,
+      "insufficient_evidence_handled_correctly": null
+    },
+    {
+      "incident": "Payment API requests are timing out",
+      "expected_diagnosis": "Database connection pool exhaustion is causing payment requests to time out.",
+      "actual_diagnosis": "Payment API request timing out due to database connection pool exhaustion or long-running queries.",
+      "passed": true,
+      "confidence": 0.8,
+      "expected_insufficient_evidence": false,
+      "actual_insufficient_evidence": false,
+      "insufficient_evidence_handled_correctly": null
+    },
+    {
+      "incident": "POST /payment returns HTTP 400 because currency is missing",
+      "expected_diagnosis": "Payment request validation failed because currency is required.",
+      "actual_diagnosis": "Request validation failed because currency is required.",
+      "passed": true,
+      "confidence": 0.9,
+      "expected_insufficient_evidence": false,
+      "actual_insufficient_evidence": false,
+      "insufficient_evidence_handled_correctly": null
+    },
+    {
+      "incident": "POST /unknown returns HTTP 500 with no matching logs or documentation",
+      "expected_diagnosis": "Insufficient evidence to determine the root cause.",
+      "actual_diagnosis": "Insufficient evidence to determine the root cause.",
+      "passed": true,
+      "confidence": 0.0,
+      "expected_insufficient_evidence": true,
+      "actual_insufficient_evidence": true,
+      "insufficient_evidence_handled_correctly": true
+    }
+  ]
+}
