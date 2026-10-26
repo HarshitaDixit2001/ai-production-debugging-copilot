@@ -31,6 +31,22 @@ The system investigates the available context and returns a diagnosis, supportin
 - **Reliability Console dashboard** — submit incidents, inspect results, and view evaluation metrics.
 - **Evaluation pipeline** — compare generated diagnoses against expected outcomes.
 - **Automated tests** — test API behavior, validation, retrieval, error handling, and evaluation functionality.
+## Screenshots
+
+### 1. Incident Investigation
+The incident intake interface and investigation pipeline.
+
+![Incident Investigation](docs/screenshots/dashboard.png)
+
+### 2. Evaluation Summary
+Evaluation metrics covering diagnosis accuracy, diagnosis coverage, and insufficient-evidence handling.
+
+![Evaluation Summary](docs/screenshots/evaluation-results.png)
+
+### 3. AI-Generated Incident Analysis
+A completed investigation showing the suspected root cause, supporting evidence, model-reported confidence, recommended actions, and verification steps.
+
+![Incident Analysis](docs/screenshots/incident-analysis.png)
 
 ## Architecture
 
