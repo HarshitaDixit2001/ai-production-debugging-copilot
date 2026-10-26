@@ -188,7 +188,48 @@ class IncidentAgent:
         if not valid_analysis:
             return self._insufficient_evidence()
 
-        # Use the LLM for analysis, but use retrieved records as evidence.
+        # A model's abstention must remain an abstention.
+        if analysis["diagnosis"].strip() == (
+            "Insufficient evidence to determine the root cause."
+        ):
+            return self._insufficient_evidence()
+
+        # Require every model-provided citation to match a retrieved
+        # source, chunk ID, or excerpt from retrieved evidence.
+        def normalize(value: str) -> str:
+            return " ".join(value.casefold().split())
+
+        retrieved_text = [
+            normalize(str(item.get("content", "")))
+            for item in evidence
+        ]
+
+        retrieved_refs = {
+            normalize(str(value))
+            for item in evidence
+            for value in (item.get("source"), item.get("chunk_id"))
+            if value
+        }
+
+        citations = [normalize(item) for item in analysis["evidence"]]
+
+        if not citations or any(
+            not citation
+            or (
+                citation not in retrieved_refs
+                and not any(
+                    len(citation) >= 20 and citation in content
+                    for content in retrieved_text
+                )
+            )
+            for citation in citations
+        ):
+            return self._insufficient_evidence()
+
+        # Return the validated retrieved records, not model-invented
+        # evidence records.
         analysis["evidence"] = evidence
+
+        return analysis
 
         return analysis

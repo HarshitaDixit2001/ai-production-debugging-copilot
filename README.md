@@ -210,7 +210,7 @@ The current evaluation run reported the following results on a dataset of four t
 | Failed cases | 0 |
 | Error cases | 0 |
 
-These are results from a **small, four-case evaluation dataset**, not evidence of production-level accuracy. The insufficient-evidence case is included in the accuracy calculation, and the coverage metric distinguishes cases receiving a diagnosis from cases where the system abstains.
+These results reflect a small, four-case evaluation dataset and are not evidence of production-level accuracy. One timeout diagnosis did not match its expected diagnosis under the evaluator's current matching criteria. Diagnosis coverage was 75%, and the system correctly abstained on the single designated insufficient-evidence case. Model-reported confidence is not a calibrated probability of correctness.
 
 ### What is evaluated?
 
@@ -219,6 +219,13 @@ These are results from a **small, four-case evaluation dataset**, not evidence o
 - Whether insufficient-evidence handling works on the designated test case.
 - Whether confidence values are valid.
 - Whether evaluation cases complete without execution errors.
+- Whether model-provided evidence citations match retrieved source IDs, chunk IDs, or evidence     excerpts.
+- Whether unsupported citations trigger safe abstention.
+
+
+**Interpretation:** The 100% diagnosis accuracy is an observed result on only four test cases, not a reliable estimate of real-world performance. Diagnosis coverage of 75% means the system provided diagnoses for three cases and abstained on one. The reported confidence score is model output and is not a calibrated probability.
+
+Evidence-citation validation checks whether model-provided citations correspond to retrieved evidence. It does not independently prove that every diagnosis is logically supported by its citations.
 
 ## Automated Tests
 
@@ -228,7 +235,7 @@ Run the complete test suite:
 pytest -q
 ```
 
-The latest recorded full test run completed with **47 passed** and one non-blocking deprecation warning.
+The latest recorded full test run completed with **48 passed** and one non-blocking deprecation warning.
 
 The suite covers core agent behavior, input validation, retrieval, tool limits, error handling, request IDs, health checks, and evaluation functionality.
 

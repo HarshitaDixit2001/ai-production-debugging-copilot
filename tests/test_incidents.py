@@ -25,7 +25,7 @@ def test_analyze_incident():
         "diagnosis": (
             "Database insertion failed because transaction_id was NULL."
         ),
-        "evidence": ["DatabaseError in error.log"],
+        "evidence": ["error.log"],
         "confidence": 0.95,
         "possible_causes": [
             "transaction_id was generated after database insertion"
